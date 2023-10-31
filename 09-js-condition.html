@@ -1,0 +1,83 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09-js-condition By Chattida</title>
+    <style>
+        /* ตกแต่งกรอบ */
+        #cashier {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #f5f5f3;
+            background-color: #f6ba39;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="cashier">
+        <h1>ร้านขายของ</h1>
+
+        <label for="productName">สินค้า:</label>
+        <input type="text" id="productName"><br><br>
+
+        <label for="productPrice">ราคา (บาท):</label>
+        <input type="number" id="productPrice"><br><br>
+
+        <button id="submit">Submit</button>
+        <button id="reset">Reset</button><br><br>
+
+        <ul id="productList"></ul>
+
+        <p id="totalPrice">ราคารวม (ก่อนภาษี): 0 บาท</p>
+        <p id="tax">ภาษี 7%: 0 บาท</p>
+        <p id="grandTotal">ราคารวม (รวมภาษี): 0 บาท</p>
+    </div>
+
+    <script>
+        const productList = document.getElementById('productList');
+        const total = document.getElementById('totalPrice');
+        const taxDisplay = document.getElementById('tax');
+        const grandTotalDisplay = document.getElementById('grandTotal');
+
+        let totalPrice = 0;
+        let tax = 0;
+
+        document.getElementById('submit').addEventListener('click', function () {
+            const productName = document.getElementById('productName').value;
+            const productPrice = parseFloat(document.getElementById('productPrice').value);
+
+            if (productName && !isNaN(productPrice)) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${productName}: ${productPrice} บาท`;
+                productList.appendChild(listItem);
+
+                totalPrice += productPrice;
+                updateTotals();
+
+                // ล้างข้อมูลในช่องป้อนข้อมูล
+                document.getElementById('productName').value = '';
+                document.getElementById('productPrice').value = '';
+            } else {
+                alert('กรุณากรอกข้อมูลให้ถูกต้อง');
+            }
+        });
+
+        document.getElementById('reset').addEventListener('click', function () {
+            productList.innerHTML = '';
+            totalPrice = 0;
+            tax = 0;
+            updateTotals();
+        });
+
+        function updateTotals() {
+            total.textContent = `ราคารวม (ก่อนภาษี): ${totalPrice.toFixed(2)} บาท`;
+            tax = totalPrice * 0.07;
+            taxDisplay.textContent = `ภาษี 7%: ${tax.toFixed(2)} บาท`;
+            grandTotalDisplay.textContent = `ราคารวม (รวมภาษี): ${(totalPrice + tax).toFixed(2)} บาท`;
+        }
+    </script>
+</body>
+</html>
