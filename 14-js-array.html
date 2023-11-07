@@ -149,21 +149,18 @@ width: 100;
           </div>
           <div class="col-sm-6 mb-5">
             <div class="card h-100">
-            <div class="card-body">
               <div class="card-body">
                 <h5 class="card-title">Array</h5>
-                <p class="card-text" mt-3>
-                    <p id="output99"></p>
-                    
-                    <p class="card-text" mt-3>
-                    ชื่อ - สกุล : <p id="output1"></p>
-                    <br>
-                    อายุ : <p id="output2"></p>
+                <p class="card-text mt-3">
+                  <p id="output3"></p>
                 </p>
-                  </p>
                 <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-                    <button type="botton" class="btn btn-primary" onclick="array_click
-                     ()">Submit</button>
+                <button type="button" class="btn btn-success" onclick="array_click()">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
                   </div>
               </div>
             </div>
@@ -180,33 +177,42 @@ width: 100;
     "sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
        
-        <script>
-          function submit_click() {
-            var nameValue = document.getElementById('name').value;
-            var ageValue = document.getElementById('age').value;
-          
-            document.getElementById('output1').textContent = nameValue;
-            document.getElementById('output2').textContent = ageValue;
-          
-            document.getElementById('name').value = '';
-            document.getElementById('age').value = '';
-    
-          }
-
-      
-      </script>
-
-      <script>
-
-            
-        
-        function array_click() {
-          const fruit = ['Apple', 'Banana', 'Cherry', 'Durian'];
-          const output99Element = document.getElementById('output99');
-          output99Element.innerHTML = ''; 
-      
-          for (let i = 0; i < fruit.length; i++) {
-              output99Element.innerHTML += fruit[i] + '<br>';
-          }
+    <script>
+      const name=[]
+      const age=[]
+  
+  
+  
+      function submit_click(){
+  
+          name.push(document.getElementById('name').value)
+          age.push(document.getElementById('age').value)
+  
+          console.log(name)
+          console.log(age)
+  
+  
+          document.getElementById('name').value= ''
+          document.getElementById('age').value= ''
       }
-      
+      function reset_click(){
+          document.getElementById('name').value= ''
+          document.getElementById('age').value= ''
+      }
+  </script>
+  
+  <script>
+      const fruit=['Apple','Banana','Cherry','Durian']
+  
+      function array_click(){
+          for (let i = 0; i < fruit.length; i++){
+              document.getElementById('output3').innerHTML += fruit[i] + '<br>'
+          }
+  
+  
+         // document.getElementById('output3').innerHTML = fruit[0]
+      }
+  </script>
+  
+  </body>
+  </html>
